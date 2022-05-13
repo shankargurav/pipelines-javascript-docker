@@ -1,16 +1,8 @@
 trigger:
-        - main
-
-        pool:
-          vmImage: 'ubuntu-latest' # set to windows-latest or another Windows vmImage for Windows builds
-
-        variables:
-          imageName: 'pipelines-javascript-docker'
-
-        steps:
-        - task: Docker@2
-          displayName: Build an image
-          inputs:
-            repository: $(imageName)
-            command: build
-            Dockerfile: app/Dockerfile
+- main
+steps:
+   - task: AzureFunctionAppContainer@1
+     inputs:
+       azureSubscription: 'DockerDevopsServiceCon'
+       appName: 'fn-dev-devops-eastus-001'
+       imageName: 'pipelines-javascript-docker'
