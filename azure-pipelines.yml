@@ -1,8 +1,17 @@
 trigger:
 - main
 steps:
+
+   - task: Docker@2
+     inputs:
+      containerRegistry: 'dockcontainerregistry'
+      repository: 'sn-acm-api-dev'
+      command: 'buildAndPush'
+      Dockerfile: '**/Dockerfile'
+
    - task: AzureFunctionAppContainer@1
      inputs:
        azureSubscription: 'DockerDevopsServiceCon'
        appName: 'fn-dev-devops-eastus-001'
-       imageName: 'pipelines-javascript-docker'
+
+       imageName: 'sn-acm-api-dev'
