@@ -1,7 +1,10 @@
 trigger:
 - main
-steps:
-
+jobs:
+- job: Linux
+  pool:
+    name: devopsselfhosted    # your job runs on an agent in this pool
+  steps:  
    - task: Docker@2
      inputs:
       containerRegistry: 'dockcontainerregistry'
