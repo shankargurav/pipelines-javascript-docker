@@ -5,14 +5,14 @@ jobs:
   pool:
     name: devopsselfhosted    # your job runs on an agent in this pool
   steps:  
-   - task: BuildandPushToContainer
+   - task: BuildandPushToContainer@1
      inputs:
       containerRegistry: 'dockcontainerregistry'
       repository: 'sn-acm-api-dev'
       command: 'buildAndPush'
       Dockerfile: '**/Dockerfile'
 
-   - task: SetAzureFunctionAppContainerRepo
+   - task: SetAzureFunctionAppContainerRepo@1
      inputs:
        azureSubscription: 'DockerDevopsServiceCon'
        appName: 'fn-dev-devops-eastus-001'
